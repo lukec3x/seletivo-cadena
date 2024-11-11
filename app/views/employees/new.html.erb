@@ -1,0 +1,25 @@
+<% if director_signed_in? %>
+  <h1>Criar Novo Employee</h1>
+  <%= form_with(model: @employee, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Criar Employee" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Acesso restrito: Apenas directors podem criar employees.</p>
+<% end %>

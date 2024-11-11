@@ -1,0 +1,15 @@
+<% if director_signed_in? %> 
+ <div> Welcome <%= current_director.email %> </div> 
+  <%= button_to "Sign out Director", destroy_director_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in Director", new_director_session_path %> 
+<% end %>
+
+<br>
+
+<% if employee_signed_in? %> 
+ <div> Welcome <%= current_employee.email %> </div> 
+  <%= button_to "Sign out Employee", destroy_employee_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in Employee", new_employee_session_path %> 
+<% end %>

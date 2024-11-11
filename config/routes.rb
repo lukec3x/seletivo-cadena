@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#index"
 
-  devise_for :employees
+  # devise_for :employees
+  devise_for :employees, skip: [:registrations]
+  get "/employees/sign_up" => "employees#new", as: "new_employee_registration"
   devise_for :directors
+  resources :employees
 end

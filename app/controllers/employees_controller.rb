@@ -3,6 +3,8 @@ class EmployeesController < ApplicationController
   
   def new
     @employee = current_director.employees.build
+    puts "@employee"
+    puts @employee
   end
   
   def create
