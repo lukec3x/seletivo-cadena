@@ -2,12 +2,25 @@
 
 ## Rodando o Sistema
 
-### Passo 1: Iniciando a API
+### Passo 1a: Iniciando a API Com Docker
+
+1. Entre na pasta do projeto.
+2. Inicie a API com o docker.
+
+```bash
+docker-compose up
+```
+
+### Passo 1b: Iniciando a API Sem Docker
 
 1. Entre na pasta do projeto.
 2. Inicie a API.
 
 ```bash
+# Instalar as dependências
+bundle install
+
+# Iniciar a API
 rails s
 ```
 
