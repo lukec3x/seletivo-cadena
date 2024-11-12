@@ -2,6 +2,16 @@
   <h1>Criar Novo Employee</h1>
   <%= form_with(model: @employee, local: true) do |form| %>
     <div class="field">
+      <%= form.label :name, "Name" %><br />
+      <%= form.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :cpf, "CPF" %><br />
+      <%= form.text_field :cpf, data: { validate: 'cpf' } %>
+    </div>
+
+    <div class="field">
       <%= form.label :email %>
       <%= form.email_field :email %>
     </div>

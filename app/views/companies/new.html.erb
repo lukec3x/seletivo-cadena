@@ -1,0 +1,20 @@
+<% if director_signed_in? %>
+  <h1>Criar Nova Company</h1>
+  <%= form_with(model: @company, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :company_name %><br />
+      <%= form.text_field :company_name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :cnpj, "CNPJ" %><br />
+      <%= form.text_field :cnpj %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Criar Company" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Acesso restrito: Apenas directors podem criar companies.</p>
+<% end %>

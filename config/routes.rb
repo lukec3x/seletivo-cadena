@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   # devise_for :employees
   devise_for :employees, skip: [:registrations]
   get "/employees/sign_up" => "employees#new", as: "new_employee_registration"
-  devise_for :directors
   resources :employees
+  
+  devise_for :directors, controllers: {
+    registrations: "directors"
+  }
+
+  resources :companies, only: [:new, :create]
 end
