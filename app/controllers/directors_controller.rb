@@ -1,5 +1,7 @@
 # frozen_string_literal: true
   class DirectorsController < Devise::RegistrationsController
+    before_action :authenticate_director!
+
     private
 
     def sign_up_params

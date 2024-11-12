@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def new
-    @company = current_director.companies.build
+    @company = current_director&.companies&.build
   end
 
   def create
