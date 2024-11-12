@@ -1,5 +1,24 @@
 <h1>Service Orders</h1>
 
+<form>
+  <label>Data:</label>
+  <input type="date" name="created_at" value="<%= params[:created_at] %>">
+
+  <label>Status:</label>
+  <select name="status">
+    <option value="">Todos</option>
+    <option value="open" <%= params[:status] == "open" ? "selected" : "" %>>Aberto</option>
+    <option value="in_progress" <%= params[:status] == "in_progress" ? "selected" : "" %>>Em andamento</option>
+    <option value="completed" <%= params[:status] == "completed" ? "selected" : "" %>>Concluído</option>
+    <option value="inactive" <%= params[:status] == "inactive" ? "selected" : "" %>>Inativo</option>
+  </select>
+
+  <label>Nome do cliente:</label>
+  <input type="text" name="client_name" value="<%= params[:client_name] %>">
+
+  <button type="submit">Filtrar</button>
+</form>
+
 <table>
   <thead>
     <tr>
@@ -7,6 +26,7 @@
       <th>Cliente</th>
       <th>Descrição</th>
       <th>Status</th>
+      <th>Data</th>
       <%# <th>Ações</th> %>
     </tr>
   </thead>
@@ -17,6 +37,7 @@
         <td><%= service_order.client_name %></td>
         <td><%= service_order.description %></td>
         <td><%= service_order.status %></td>
+        <td><%= service_order.created_at %></td>
         <td>
           <%# link_to "Editar", edit_service_order_path(service_order) %>
           <%# link_to "Excluir", service_order_path(service_order), method: :delete, data: { confirm: "Tem certeza que deseja excluir?" } %>
