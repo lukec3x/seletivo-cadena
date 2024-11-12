@@ -20,6 +20,9 @@ docker-compose up
 # Instalar as dependências
 bundle install
 
+# Configurar o banco
+rails db:prepare
+
 # Iniciar a API
 rails s
 ```
