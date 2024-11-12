@@ -1,0 +1,27 @@
+<% if employee_signed_in? %>
+  <h1>Criar Nova Service Order</h1>
+  <%= form_with(model: @service_order, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :client_name %><br />
+      <%= form.text_field :client_name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :status, "Status" %><br />
+      <%= form.select :status, [:open, :inactive] %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :description, "Descrição" %><br />
+      <%= form.text_area :description %>
+    </div>
+
+    <br>
+
+    <div class="actions">
+      <%= form.submit "Criar Service Order" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Acesso restrito: Apenas employees podem criar companies.</p>
+<% end %>

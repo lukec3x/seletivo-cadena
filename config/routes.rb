@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   }
 
   resources :companies, only: [:new, :create]
+
+  # resources :service_orders, only: [:index, :new, :create]
+  resources :service_orders
 end

@@ -13,3 +13,14 @@
 <% else %>
   <%= button_to "Sign in Employee", new_employee_session_path %> 
 <% end %>
+
+<br>
+<br>
+
+<% if director_signed_in? %>
+  <%= button_to "Create Employee", new_employee_path, method: :get %> 
+<% end %> 
+
+<% if employee_signed_in? %>
+  <%= button_to "Create Service Order", new_service_order_path, method: :get %> 
+<% end %> 
