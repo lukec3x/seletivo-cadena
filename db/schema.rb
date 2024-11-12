@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_11_173503) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_11_192936) do
+  create_table "companies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "director_id", null: false
+    t.index ["director_id"], name: "index_companies_on_director_id"
+  end
+
   create_table "directors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,11 +38,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_11_173503) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "director_id", null: false
-    t.index ["director_id"], name: "index_employees_on_director_id"
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "employees", "directors"
+  add_foreign_key "companies", "directors"
+  add_foreign_key "employees", "companies"
 end

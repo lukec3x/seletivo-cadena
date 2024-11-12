@@ -4,5 +4,5 @@ class Director < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :employees, dependent: :destroy
+  has_many :companies, dependent: :destroy
 end

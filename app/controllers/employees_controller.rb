@@ -2,13 +2,15 @@ class EmployeesController < ApplicationController
   before_action :authenticate_director!
   
   def new
-    @employee = current_director.employees.build
-    puts "@employee"
-    puts @employee
+    if current_director.companies.first.nil?
+      current_director.companies.create
+    end
+
+    @employee = current_director.companies.first.employees.build
   end
   
   def create
-    @employee = current_director.employees.build(employee_params)
+    @employee = current_director.companies.first.employees.build(employee_params)
     if @employee.save
       redirect_to @employee, notice: "Employee criado com sucesso."
     else

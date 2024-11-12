@@ -5,5 +5,5 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  belongs_to :director
+  belongs_to :company
 end
