@@ -9,12 +9,16 @@ Rails.application.routes.draw do
   root "home#index"
 
   # devise_for :employees
-  devise_for :employees, skip: [:registrations]
+  devise_for :employees, skip: [:registrations],
+             controllers: {
+               sessions: "employees_sessions"
+             }
   get "/employees/sign_up" => "employees#new", as: "new_employee_registration"
   resources :employees
   
   devise_for :directors, controllers: {
-    registrations: "directors"
+    registrations: "directors",
+    sessions: "directors_sessions"
   }
 
   resources :companies, only: [:new, :create]
