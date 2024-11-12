@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   # resources :service_orders, only: [:index, :new, :create]
   resources :service_orders
+
+  resources :dashboard, only: [:index]
 end

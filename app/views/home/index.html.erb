@@ -19,6 +19,8 @@
 
 <% if director_signed_in? %>
   <%= button_to "Create Employee", new_employee_path, method: :get %> 
+  <br>
+  <%= button_to "Open Dashboard", dashboard_index_path, method: :get %>
 <% end %> 
 
 <% if employee_signed_in? %>

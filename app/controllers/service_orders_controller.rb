@@ -2,7 +2,7 @@ class ServiceOrdersController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    @service_orders = ServiceOrder.all
+      @service_orders = ServiceOrder.includes(:employee).all
 
     if params[:created_at].present?
       @service_orders = @service_orders.where("created_at LIKE ?", "%#{params[:created_at]}%")

@@ -1,0 +1,78 @@
+<h1>Dashboard</h1>
+
+<form>
+  <label>Data:</label>
+  <input type="date" name="created_at" value="<%= params[:created_at] %>">
+
+  <label>Status:</label>
+  <select name="status">
+    <option value="">Todos</option>
+    <option value="open" <%= params[:status] == "open" ? "selected" : "" %>>Aberto</option>
+    <option value="in_progress" <%= params[:status] == "in_progress" ? "selected" : "" %>>Em andamento</option>
+    <option value="completed" <%= params[:status] == "completed" ? "selected" : "" %>>Concluído</option>
+    <option value="inactive" <%= params[:status] == "inactive" ? "selected" : "" %>>Inativo</option>
+  </select>
+
+  <label>Nome do cliente:</label>
+  <input type="text" name="client_name" value="<%= params[:client_name] %>">
+
+  <button type="submit">Filtrar</button>
+</form>
+
+<h2>Employees</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome do funcionário</th>
+      <th>E-mail do funcionário</th>
+      <th>Quantidade de ordens de serviço</th>
+      <th>Tempo médio de conclusão</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.id %></td>
+        <td><%= employee.name %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.service_orders.length %></td>
+        <td><%= average_conclusion_time(employee) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<ul>
+<li> Tempo médio total de conclusão: <%= total_average_conclusion_time %>
+</ul>
+
+<h2>Service Orders por Employees</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Descrição</th>
+      <th>Status</th>
+      <th>Data</th>
+      <th>Nome do funcionário</th>
+      <th>E-mail do funcionário</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @service_orders.each do |service_order| %>
+      <tr>
+        <td><%= service_order.id %></td>
+        <td><%= service_order.client_name %></td>
+        <td><%= service_order.description %></td>
+        <td><%= service_order.status %></td>
+        <td><%= service_order.created_at %></td>
+        <td><%= service_order.employee.name %></td>
+        <td><%= service_order.employee.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
