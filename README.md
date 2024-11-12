@@ -67,7 +67,7 @@ rails s
 2. Preencha os campos obrigatórios com as informações de login do funcionário, incluindo e-mail e senha.
 3. Clique no botão "Log in".
 
-### Passo 3: Criando Ordem de Serviço
+### Passo 3: Criando a Ordem de Serviço
 
 1. Clique em "Create Service Order" na tela inicial ou acesse o [link direto](http://localhost:3000/service_orders/new).
 2. Preencha os campos com as informações da ordem de serviço.
@@ -85,3 +85,53 @@ rails s
 
 1. Clique em "Open Dashboard" na tela inicial ou acesse o [link direto](http://localhost:3000/dashboard).
 3. Você verá os filtros para as métricas de Funcionários e de Ordem de Serviços.
+
+## Criando a Ordem de Serviço via API
+
+### Passo 1: Obtendo o token
+
+```bash
+curl --location 'http://localhost:3000/api/v1/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "e2@e.com",
+    "password": "123123"
+}'
+```
+
+Retorno:
+```json
+{"authentication_token":"a9f25973da702305914713e5d5f17840e33ddc92","message":"Login successful"}
+```
+
+### Passo 2: Criando a Ordem de serviço
+
+```bash
+curl --location 'http://localhost:3000/api/v1/service_orders' \
+--header 'Authorization: a9f25973da702305914713e5d5f17840e33ddc92' \
+--header 'Content-Type: application/json' \
+--data '{
+    "service_order": {
+        "client_name": "Cliente teste",
+        "status": "open",
+        "description": "exemplo"
+    }
+}'
+```
+
+Retorno:
+```json
+{
+    "data": {
+        "id": 5,
+        "status": "open",
+        "client_name": "Cliente teste",
+        "description": "exemplo",
+        "completed_at": null,
+        "employee_id": 1,
+        "company_id": 1,
+        "created_at": "2024-11-12T18:34:56.111Z",
+        "updated_at": "2024-11-12T18:34:56.111Z"
+    }
+}
+```
