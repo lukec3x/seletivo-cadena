@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_12_125457) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_12_174945) do
   create_table "companies", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,6 +45,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_12_125457) do
     t.integer "company_id", null: false
     t.string "name"
     t.string "cpf"
+    t.string "authentication_token"
+    t.index ["authentication_token"], name: "index_employees_on_authentication_token", unique: true
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true

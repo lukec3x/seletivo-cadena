@@ -27,4 +27,11 @@ Rails.application.routes.draw do
   resources :service_orders
 
   resources :dashboard, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      post 'login', to: 'sessions#login'
+      post 'service_orders', to: 'service_orders#create'
+    end
+  end
 end
